@@ -6,11 +6,30 @@
 //
 
 import UIKit
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+//        let session = AVAudioSession.sharedInstance()
+//        do {
+//            try session.setCategory(AVAudioSession.Category.playAndRecord, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+//            try session.setActive(true)
+//            
+//            // Check for microphone permission...
+//            session.requestRecordPermission { granted in
+//                if granted {
+//                    appHasMicAccess = true
+//                } else {
+//                    appHasMicAccess = false
+//                }
+//            }
+//        } catch let error as NSError {
+//            print("AVAudioSession configuration error: \(error.localizedDescription)")
+//        }
+//        
         return true
     }
 
