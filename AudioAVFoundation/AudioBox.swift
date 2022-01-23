@@ -13,6 +13,7 @@ class AudioBox: NSObject, ObservableObject {
     var status: AudioStatus = .stopped
     var audioRecorder: AVAudioRecorder?
     var audioPlayer: AVAudioPlayer?
+    let audioMeterTable = AudioMeterTable(tableSize: 100)
     
     var urlFromMemo: URL {
         let fileManager = FileManager.default
@@ -109,6 +110,7 @@ class AudioBox: NSObject, ObservableObject {
         guard let audioPlayer = audioPlayer else { return }
         audioPlayer.delegate = self
         if audioPlayer.duration > 0.0 {
+            audioPlayer.isMeteringEnabled = true
             audioPlayer.play()
             status = .playing
         }

@@ -14,6 +14,10 @@
 		1A9FFA09279C657000C4EEAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FFA07279C657000C4EEAA /* LaunchScreen.storyboard */; };
 		1AEE2936279D00E6009ECF55 /* AudioBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE2935279D00E6009ECF55 /* AudioBox.swift */; };
 		1AEE2938279D01D0009ECF55 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE2937279D01D0009ECF55 /* AudioStatus.swift */; };
+		1AEE293A279DD4E2009ECF55 /* AudioMeterTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE2939279DD4E2009ECF55 /* AudioMeterTable.swift */; };
+		1AEE293C279DF8C4009ECF55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AEE293B279DF8C4009ECF55 /* GoogleService-Info.plist */; };
+		1AEE293F279DFB59009ECF55 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEE293E279DFB59009ECF55 /* FirebaseStorage */; };
+		1AEE2942279DFB88009ECF55 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEE2941279DFB88009ECF55 /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,8 @@
 		1A9FFA0A279C657000C4EEAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AEE2935279D00E6009ECF55 /* AudioBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBox.swift; sourceTree = "<group>"; };
 		1AEE2937279D01D0009ECF55 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
+		1AEE2939279DD4E2009ECF55 /* AudioMeterTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMeterTable.swift; sourceTree = "<group>"; };
+		1AEE293B279DF8C4009ECF55 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AEE2942279DFB88009ECF55 /* FirebaseAnalytics in Frameworks */,
+				1AEE293F279DFB59009ECF55 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +52,7 @@
 			children = (
 				1A9FF9FB279C656F00C4EEAA /* AudioAVFoundation */,
 				1A9FF9FA279C656F00C4EEAA /* Products */,
+				1AEE2940279DFB88009ECF55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,10 +67,12 @@
 		1A9FF9FB279C656F00C4EEAA /* AudioAVFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				1AEE293B279DF8C4009ECF55 /* GoogleService-Info.plist */,
 				1A9FFA10279C6F7B00C4EEAA /* Resources */,
 				1A9FFA00279C656F00C4EEAA /* ViewController.swift */,
 				1AEE2935279D00E6009ECF55 /* AudioBox.swift */,
 				1AEE2937279D01D0009ECF55 /* AudioStatus.swift */,
+				1AEE2939279DD4E2009ECF55 /* AudioMeterTable.swift */,
 			);
 			path = AudioAVFoundation;
 			sourceTree = "<group>";
@@ -76,6 +87,13 @@
 				1A9FFA0A279C657000C4EEAA /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		1AEE2940279DFB88009ECF55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +112,10 @@
 			dependencies = (
 			);
 			name = AudioAVFoundation;
+			packageProductDependencies = (
+				1AEE293E279DFB59009ECF55 /* FirebaseStorage */,
+				1AEE2941279DFB88009ECF55 /* FirebaseAnalytics */,
+			);
 			productName = AudioAVFoundation;
 			productReference = 1A9FF9F9279C656F00C4EEAA /* AudioAVFoundation.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +144,9 @@
 				Base,
 			);
 			mainGroup = 1A9FF9F0279C656F00C4EEAA;
+			packageReferences = (
+				1AEE293D279DFB59009ECF55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 1A9FF9FA279C656F00C4EEAA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +163,7 @@
 			files = (
 				1A9FFA09279C657000C4EEAA /* LaunchScreen.storyboard in Resources */,
 				1A9FFA06279C657000C4EEAA /* Assets.xcassets in Resources */,
+				1AEE293C279DF8C4009ECF55 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +179,7 @@
 				1AEE2938279D01D0009ECF55 /* AudioStatus.swift in Sources */,
 				1A9FF9FD279C656F00C4EEAA /* AppDelegate.swift in Sources */,
 				1A9FF9FF279C656F00C4EEAA /* SceneDelegate.swift in Sources */,
+				1AEE293A279DD4E2009ECF55 /* AudioMeterTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +393,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1AEE293D279DFB59009ECF55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1AEE293E279DFB59009ECF55 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AEE293D279DFB59009ECF55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		1AEE2941279DFB88009ECF55 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AEE293D279DFB59009ECF55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A9FF9F1279C656F00C4EEAA /* Project object */;
 }
