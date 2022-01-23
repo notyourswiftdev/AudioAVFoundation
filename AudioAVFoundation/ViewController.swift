@@ -19,18 +19,14 @@ class ViewController: UIViewController {
     
     lazy var recordButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Not Recording", for: .normal)
-        button.backgroundColor = .red
-        
+        button.backgroundColor = .orange
         button.addTarget(self, action: #selector(onRecordAction), for: .touchUpInside)
         return button
     }()
     
     lazy var playButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Not Playing", for: .normal)
         button.backgroundColor = .blue
-        
         button.addTarget(self, action: #selector(onPlayAction), for: .touchUpInside)
         return button
     }()
@@ -70,23 +66,23 @@ class ViewController: UIViewController {
         if audioBox.status == .stopped {
             if appHasMicAccess {
                 audioBox.record()
-                recordButton.setTitle("Recording", for: .normal)
+                recordButton.backgroundColor = .red
             } else {
                 requestMicrophoneAccess()
             }
         } else {
             audioBox.stopRecording()
-            recordButton.setTitle("Not Recording", for: .normal)
+            recordButton.backgroundColor = .orange
         }
     }
     
     @objc func onPlayAction() {
         if audioBox.status == .playing {
             audioBox.stopPlayback()
-            playButton.setTitle("Stop Playing", for: .normal)
+            playButton.backgroundColor = .blue
         } else {
             audioBox.play()
-            playButton.setTitle("Playing", for: .normal)
+            playButton.backgroundColor = .green
         }
     }
 }
