@@ -14,12 +14,17 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "00:00:00"
         label.textColor = .darkGray
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 44.0)
         return label
     }()
     
     lazy var recordButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .orange
+        button.layer.cornerRadius = 50
+        button.setTitle("Record", for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 100).isActive = true
         button.addTarget(self, action: #selector(onRecordAction), for: .touchUpInside)
         return button
     }()
@@ -27,6 +32,9 @@ class ViewController: UIViewController {
     lazy var playButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .blue
+        button.layer.cornerRadius = 50
+        button.setTitle("Play", for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 100).isActive = true
         button.addTarget(self, action: #selector(onPlayAction), for: .touchUpInside)
         return button
     }()
@@ -35,6 +43,7 @@ class ViewController: UIViewController {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
+        stack.spacing = 16
         return stack
     }()
     
@@ -95,7 +104,9 @@ extension ViewController {
         view.addSubview(verticalStackView)
         NSLayoutConstraint.activate([
             verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
     }
 }
