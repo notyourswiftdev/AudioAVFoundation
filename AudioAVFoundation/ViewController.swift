@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     
     lazy var recordButton: UIButton = {
         let button = UIButton()
-        button.setTitle("RECORD", for: .normal)
+        button.setTitle("Not Recording", for: .normal)
         button.backgroundColor = .red
         
         button.addTarget(self, action: #selector(onRecordAction), for: .touchUpInside)
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     lazy var playButton: UIButton = {
         let button = UIButton()
-        button.setTitle("PLAY", for: .normal)
+        button.setTitle("Not Playing", for: .normal)
         button.backgroundColor = .blue
         
         button.addTarget(self, action: #selector(onPlayAction), for: .touchUpInside)
@@ -42,55 +42,51 @@ class ViewController: UIViewController {
         return stack
     }()
     
-    var audioStatus: AudioStatus = AudioStatus.Stopped
-    var audioRecord: AVAudioRecorder!
-    var audioPlayer: AVAudioPlayer!
+    var audioBox = AudioBox()
+    var appHasMicAccess = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        audioBox.setupRecorder()
         configureViewControllerUI()
     }
     
-    private func setPlayButtonOn(flag: Bool) {
-        if flag == true {
-            playButton.setTitle("Playing", for: .normal)
-        } else {
-            playButton.setTitle("Not Playing", for: .normal)
+    private func requestMicrophoneAccess() {
+        let session = AVAudioSession.sharedInstance()
+        session.requestRecordPermission { granted in
+            self.appHasMicAccess = granted
+            if granted {
+                self.audioBox.record()
+            } else {
+                let alertController = UIAlertController(title: "Requires Microphone Access", message: "Go to Settings > AudioAVFoundation > Allow AudioAVFoundation to Access Microphone. \nSet switch to enable.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
     
     @objc func onRecordAction() {
-        if appHasMicAccess == true {
-            if audioStatus != .Playing {
-                switch audioStatus {
-                case .Stopped:
-                    recordButton.setTitle("Record", for: .normal)
-                case .Recording:
-                    recordButton.setTitle("Stop Recording", for: .normal)
-                    stopRecording()
-                default:
-                    break;
-                }
+        if audioBox.status == .stopped {
+            if appHasMicAccess {
+                audioBox.record()
+                recordButton.setTitle("Recording", for: .normal)
+            } else {
+                requestMicrophoneAccess()
             }
         } else {
-            recordButton.isEnabled = false
-            let alertController = UIAlertController(title: "Requires Microphone Access", message: "Go to Settings > AudioAVFoundation > Allow AudioAVFoundation to Access Microphone. \nSet switch to enable.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            audioBox.stopRecording()
+            recordButton.setTitle("Not Recording", for: .normal)
         }
     }
     
     @objc func onPlayAction() {
-        if audioStatus != .Recording {
-            switch audioStatus {
-            case .Stopped:
-                play()
-            case .Playing:
-                stopPlayback()
-            default:
-                break;
-            }
+        if audioBox.status == .playing {
+            audioBox.stopPlayback()
+            playButton.setTitle("Stop Playing", for: .normal)
+        } else {
+            audioBox.play()
+            playButton.setTitle("Playing", for: .normal)
         }
     }
 }
@@ -105,45 +101,5 @@ extension ViewController {
             verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-    }
-}
-
-extension ViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegate {
-    
-    // MARK: Recording
-    func setupRecorder() {
-        
-    }
-    
-    func record() {
-        audioStatus = .Recording
-    }
-    
-    func stopRecording() {
-        recordButton.setTitle("Stop Recording", for: .normal)
-        audioStatus = .Stopped
-    }
-    
-    func play() {
-        setPlayButtonOn(flag: true)
-        audioStatus = .Playing
-    }
-    
-    func stopPlayback() {
-        setPlayButtonOn(flag: false)
-        audioStatus = .Stopped
-    }
-    
-    // MARK: Delegates
-
-    // MARK: Notifications
-    
-    // MARK: Helpers
-    
-    func getURLForMemo() -> NSURL {
-        let tempDir = NSTemporaryDirectory()
-        let filePath = tempDir + "/TempMemo.caf"
-        
-        return NSURL.fileURL(withPath: filePath) as NSURL
     }
 }
