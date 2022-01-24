@@ -42,11 +42,22 @@ class ViewController: UIViewController {
     
     lazy var uploadButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .darkGray
+        button.backgroundColor = .purple
         button.layer.cornerRadius = 50
         button.setTitle("Upload", for: .normal)
         button.heightAnchor.constraint(equalToConstant: 100).isActive = true
         button.addTarget(self, action: #selector(uploadFileAction), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var settingsButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .lightGray
+        button.layer.cornerRadius = 50
+        button.setTitle("Settings", for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        button.addTarget(self, action: #selector(settingsButtonAction), for: .touchUpInside)
         return button
     }()
     
@@ -119,6 +130,11 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func settingsButtonAction() {
+        let vc = AudioSettingsViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc func updateLoop() {
         if audioBox.status == .playing {
             if CFAbsoluteTimeGetCurrent() - speechTimer > 0.1 {
@@ -171,6 +187,13 @@ extension ViewController {
             verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+        ])
+        
+        view.addSubview(settingsButton)
+        NSLayoutConstraint.activate([
+            settingsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            settingsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            settingsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }

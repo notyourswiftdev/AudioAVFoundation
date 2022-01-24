@@ -18,6 +18,7 @@
 		1AEE293C279DF8C4009ECF55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AEE293B279DF8C4009ECF55 /* GoogleService-Info.plist */; };
 		1AEE293F279DFB59009ECF55 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEE293E279DFB59009ECF55 /* FirebaseStorage */; };
 		1AEE2942279DFB88009ECF55 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEE2941279DFB88009ECF55 /* FirebaseAnalytics */; };
+		1AEE2944279E24FA009ECF55 /* AudioSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE2943279E24FA009ECF55 /* AudioSettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1AEE2937279D01D0009ECF55 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 		1AEE2939279DD4E2009ECF55 /* AudioMeterTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMeterTable.swift; sourceTree = "<group>"; };
 		1AEE293B279DF8C4009ECF55 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1AEE2943279E24FA009ECF55 /* AudioSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				1AEE2935279D00E6009ECF55 /* AudioBox.swift */,
 				1AEE2937279D01D0009ECF55 /* AudioStatus.swift */,
 				1AEE2939279DD4E2009ECF55 /* AudioMeterTable.swift */,
+				1AEE2943279E24FA009ECF55 /* AudioSettingsViewController.swift */,
 			);
 			path = AudioAVFoundation;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				1AEE2938279D01D0009ECF55 /* AudioStatus.swift in Sources */,
 				1A9FF9FD279C656F00C4EEAA /* AppDelegate.swift in Sources */,
 				1A9FF9FF279C656F00C4EEAA /* SceneDelegate.swift in Sources */,
+				1AEE2944279E24FA009ECF55 /* AudioSettingsViewController.swift in Sources */,
 				1AEE293A279DD4E2009ECF55 /* AudioMeterTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
