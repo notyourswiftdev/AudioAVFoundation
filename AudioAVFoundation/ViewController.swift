@@ -96,18 +96,16 @@ class ViewController: UIViewController {
     }
     
     @objc func onRecordAction() {
-        if audioBox.status == .stopped {
-            if appHasMicAccess {
-                audioBox.record()
-                recordButton.backgroundColor = .red
-                self.startUpdateLoop()
+        if appHasMicAccess {
+            if audioBox.status == .recording {
+                audioBox.stopRecording()
+                self.stopUpdateLoop()
             } else {
-                requestMicrophoneAccess()
+                audioBox.record()
+                self.startUpdateLoop()
             }
         } else {
-            audioBox.stopRecording()
-            self.stopUpdateLoop()
-            recordButton.backgroundColor = .orange
+            requestMicrophoneAccess()
         }
     }
     
@@ -115,11 +113,9 @@ class ViewController: UIViewController {
         if audioBox.status == .playing {
             audioBox.stopPlayback()
             self.stopUpdateLoop()
-            playButton.backgroundColor = .blue
         } else {
             audioBox.play()
             self.startUpdateLoop()
-            playButton.backgroundColor = .green
         }
     }
     
@@ -156,11 +152,11 @@ class ViewController: UIViewController {
     
     private func formattedCurrentTime(time: UInt) -> String {
         let hours = time / 3600
-        let minutes = (time / 60) % 60
+        let minutes = (time / 60) % 50
         let seconds = time % 60
-        
-        return String(format: "%02i:%02i:%02i", [hours, minutes, seconds])
-    }
+
+        return String(format: "%02i:%02i:%02i", arguments: [hours, minutes, seconds])
+      }
 }
 
 extension ViewController {
